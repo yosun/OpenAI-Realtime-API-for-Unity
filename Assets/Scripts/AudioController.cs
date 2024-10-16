@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ListeningMode { PushToTalk, VAD }
+
 public class AudioController : MonoBehaviour
 {
     public ListeningMode listeningMode = ListeningMode.PushToTalk;
@@ -153,7 +155,6 @@ public class AudioController : MonoBehaviour
         lastSamplePosition = micPosition;
     }
 
-
     private void PerformVAD()
     {
         if (!Microphone.IsRecording(microphoneDevice)) return;
@@ -198,7 +199,6 @@ public class AudioController : MonoBehaviour
         Microphone.End(microphoneDevice);
         StartMicrophone();
     }
-
 
     public void EnqueueAudioData(byte[] pcmAudioData)
     {
